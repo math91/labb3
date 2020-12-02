@@ -20,20 +20,26 @@ function Blog({ posts }) {
     <div className="wrapper">
       <Head><title>Gör din egen podcast</title></Head>
       <h1>Gör din egen podcast</h1>
-      <ul>
-        {list}
-      </ul>
       <Link
         href="/about/"
       >
         <a><button>Om boken</button></a>
       </Link>
+      <Link
+        href="/random/"
+      >
+        <a><button>Slumpa kapitel</button></a>
+      </Link>
+      <h2>Kapitel</h2>
+      <ul>
+        {list}
+      </ul>
     </div>
   )
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts')
+  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts/?per_page=100')
   const posts = await res.json()
 
   return {

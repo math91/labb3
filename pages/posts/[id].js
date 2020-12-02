@@ -12,17 +12,14 @@ function Post({ id, post }) {
   return(
     <div className="wrapper">
       <Head>
-        <title>{data.title.rendered}</title>
+        <title>{title}</title>
       </Head>
       <h1>
         <div dangerouslySetInnerHTML={{ __html: title }} />
       </h1>
-      <p>
-        <i>Publicerad: {date}</i>
-      </p>
       <div dangerouslySetInnerHTML={{ __html: content }} />
       <Link href="/">
-        <a><button>Tillbaka</button></a>
+        <a><button>Visa alla kapitel</button></a>
       </Link>
     </div>
   )
@@ -30,7 +27,7 @@ function Post({ id, post }) {
 
 
 export async function getStaticPaths() {
-  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts')
+  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts/?per_page=100')
   const posts = await res.json()
 
   const myPaths = posts.map((post) => `/posts/${post.id}`)
@@ -43,7 +40,7 @@ export async function getStaticPaths() {
 
 
 export const getStaticProps = async ({params: {id}}) => {
-  const res = await fetch(`https://attpodda.se/wp-json/wp/v2/posts`)
+  const res = await fetch(`https://attpodda.se/wp-json/wp/v2/posts/?per_page=100`)
   const post = await res.json()
 
   return {

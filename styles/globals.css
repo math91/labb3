@@ -34,7 +34,7 @@ li a:hover {
 }
 
 button {
-  margin: 1em 0;
+  margin: 1em 0.5em 1em 0;
   padding: 0.7em 1.2em;
   background: black;
   color: white;
