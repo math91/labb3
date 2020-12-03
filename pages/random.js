@@ -8,7 +8,6 @@ function Random({ posts }) {
     const random = Math.floor(Math.random() * posts.length)
     const myRandom = posts[random]
     setMyId(myRandom.id)
-    console.log(myId)
   }
 
   return (

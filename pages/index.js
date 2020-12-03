@@ -30,6 +30,16 @@ function Blog({ posts }) {
       >
         <a><button>Slumpa kapitel</button></a>
       </Link>
+      <Link
+        href="/notes/"
+      >
+        <a><button>Anteckningar</button></a>
+      </Link>
+      <Link
+        href="/create/"
+      >
+        <a><button>Skapa podcast</button></a>
+      </Link>
       <h2>Kapitel</h2>
       <ul>
         {list}
