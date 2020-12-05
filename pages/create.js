@@ -1,12 +1,23 @@
 import Head from "next/head"
 import Link from "next/link"
-import {useState} from "react"
+import {useState, useContext} from "react"
+import {PodContext} from "./_app.js"
 
 function Create() {
   const [value, setValue] = useState("")
+  const {pod, setPod} = useContext(PodContext)
 
   function handleChange(event) {
       setValue(event.target.value)
+  }
+
+  function handleClick() {
+      setPod(prevPod => {
+        return {
+          ...prevPod,
+          name: value
+        }
+      })
   }
 
   return (
@@ -30,7 +41,7 @@ function Create() {
       <Link
         href="/create-image/"
       >
-        <a><button>Nästa</button></a>
+        <a><button onClick={handleClick}>Nästa</button></a>
       </Link>
     </div>
   )

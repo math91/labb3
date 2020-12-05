@@ -1,15 +1,26 @@
 import Head from "next/head"
 import Link from "next/link"
-import {useState} from "react"
+import {useState, useContext} from "react"
+import {PodContext} from "./_app.js"
 
 function CreateImage() {
   const [img, setImg] = useState("")
+  const {pod, setPod} = useContext(PodContext)
 
   function handleClick() {
     fetch("https://dog.ceo/api/breeds/image/random")
     .then(response => response.json())
     .then(data => {
       setImg(data.message)
+    })
+  }
+
+  function handleNext() {
+    setPod(prevPod => {
+      return {
+        ...prevPod,
+        img: img
+      }
     })
   }
 
@@ -27,9 +38,9 @@ function CreateImage() {
           <a><button>Tillbaka</button></a>
         </Link>
         <Link
-          href="/create-image/"
+          href="/create-bio/"
         >
-          <a><button>Nästa</button></a>
+          <a><button onClick={handleNext}>Nästa</button></a>
         </Link>
       </p>
     </div>
