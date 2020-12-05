@@ -5,7 +5,6 @@ import {PodContext} from "./_app.js"
 
 function Ready() {
   const {pod, setPod} = useContext(PodContext)
-  console.log(pod)
 
   return(
     <div className="wrapper">
