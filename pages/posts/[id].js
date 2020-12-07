@@ -6,7 +6,6 @@ function Post({ id, post }) {
   const data = post.find(o => o.id === idNum)
 
   const title = data.title.rendered
-  const date = data.date.substring(0, data.date.length - 9)
   const content = data.content.rendered
 
   return(
@@ -27,7 +26,7 @@ function Post({ id, post }) {
 
 
 export async function getStaticPaths() {
-  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts/?per_page=100')
+  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts?per_page=100&_fields=id')
   const posts = await res.json()
 
   const myPaths = posts.map((post) => `/posts/${post.id}`)
@@ -40,7 +39,7 @@ export async function getStaticPaths() {
 
 
 export const getStaticProps = async ({params: {id}}) => {
-  const res = await fetch(`https://attpodda.se/wp-json/wp/v2/posts/?per_page=100`)
+  const res = await fetch(`https://attpodda.se/wp-json/wp/v2/posts?per_page=100&_fields=id,title,content`)
   const post = await res.json()
 
   return {

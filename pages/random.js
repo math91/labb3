@@ -28,7 +28,7 @@ function Random({ posts }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts/?per_page=100')
+  const res = await fetch('https://attpodda.se/wp-json/wp/v2/posts?per_page=100&_fields=id')
   const posts = await res.json()
 
   return {
